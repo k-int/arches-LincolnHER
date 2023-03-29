@@ -33,8 +33,10 @@
 
             <!--ko ifnot: $root.resourceEditorContext -->
 
+                <!--ko if: !!$parent.relatedResourcesManager && canRead -->
                 <a class="search-candidate-link pull-right" href="" data-bind="click: showrelated"><i class="fa fa-code-fork"></i> {% trans "Related Resources" %} </a>
-  
+                <!--/ko-->
+
                 <!--ko if: $root.resourceEditorContext -->
                     <!--ko if: relatable & $root.editingInstanceId != resourceinstanceid -->
                     <a class="search-candidate-link pull-right" href="" data-bind="click: function(val){relationshipcandidacy(val); showrelated()}"><i class="fa fa-code-fork"></i> {% trans "Relate Resource" %} </a>

@@ -103,15 +103,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <div class="search-type-btn-popup-panel">
                     <div class="popup-panel-row" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
                         <!-- ko if: filter.type === 'popup' && filter.enabled -->
-                        <!-- ko if: filter.name == "Search Export"-->
-                        {% if user_can_read and user.username != 'anonymous' %}
-                        <button class="saved-search-container search-type-btn-popup relative" style="" data-bind="css: {'active': $parent.sharedStateObject.selectedPopup() === filter.componentname}, click: function(){$parent.sharedStateObject.selectPopup(filter.componentname); setTimeout(function() {$(window).trigger('resize');}, 100);}">
-                            <i data-bind="css: filter.icon"></i>
-                            <!-- <p data-bind="text: filter.name"></p> -->
-                        </button>
-                        {% endif %}
-                        <!-- /ko -->
-                        <!-- ko if: filter.name !=  "Search Export"-->
                         {% if user_can_read %}
                         <button class="saved-search-container search-type-btn-popup relative" style="" data-bind="css: {'active': $parent.sharedStateObject.selectedPopup() === filter.componentname}, click: function(){$parent.sharedStateObject.selectPopup(filter.componentname); setTimeout(function() {$(window).trigger('resize');}, 100);}">
                             <i data-bind="css: filter.icon"></i>
@@ -119,10 +110,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                         </button>
                         {% endif %}
                         <!-- /ko -->
-                        <!-- /ko -->
                     </div>
                 </div>
-
             </div>
 
             <div class="flex">
@@ -133,7 +122,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                     <div class="tab-content relative" data-bind="foreach: {data: sharedStateObject.filtersList, as: 'filter'}">
                         <!-- ko if: filter.type === 'filter' && filter.enabled -->
                         <div class="tab-pane" data-bind="css: {'active': $parent.sharedStateObject.selectedTab() === filter.componentname}">
-                            <div style="height: calc(100vh - 180px)" data-bind="component: {
+                            <div style="height: calc(100vh - 100px)" data-bind="component: {
                                 name: filter.componentname,
                                 params: $parent.sharedStateObject
                             }"></div>

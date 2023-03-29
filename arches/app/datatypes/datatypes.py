@@ -731,9 +731,10 @@ class GeojsonFeatureCollectionDataType(BaseDataType):
 
     def get_bounds_from_value(self, node_data):
         bounds = None
+        #print(node_data)
         for feature in node_data["features"]:
             geom_collection = GEOSGeometry(JSONSerializer().serialize(feature["geometry"]))
-
+            #print(geom_collection)
             if bounds is None:
                 bounds = geom_collection.extent
             else:
@@ -769,6 +770,8 @@ class GeojsonFeatureCollectionDataType(BaseDataType):
             layer_icon = node.config["layerIcon"]
 
         layer_legend = node.config["layerLegend"]
+
+        layersortorder = node.layersortorder
 
         if not preview and node.config["advancedStyling"]:
             try:
@@ -1156,6 +1159,7 @@ class GeojsonFeatureCollectionDataType(BaseDataType):
             "icon": layer_icon,
             "legend": layer_legend,
             "addtomap": node.config["addToMap"],
+            "layersortorder": layersortorder
         }
 
     def after_update_all(self, tile=None):

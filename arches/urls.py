@@ -72,6 +72,8 @@ from arches.app.views.auth import (
 from arches.app.models.system_settings import settings
 from django.views.decorators.cache import cache_page
 
+from arches.app.views.reorder_maps import ReorderMaps # Overlay order
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 
@@ -116,7 +118,7 @@ urlpatterns = [
     url(r"^search$", search.SearchView.as_view(), name="search_home"),
     url(r"^search/terms$", search.search_terms, name="search_terms"),
     url(r"^search/resources$", search.search_results, name="search_results"),
-    url(r"^search/time_wheel_config$", search.time_wheel_config, name="time_wheel_config"),
+    #url(r"^search/time_wheel_config$", search.time_wheel_config, name="time_wheel_config"),
     url(r"^search/export_results$", search.export_results, name="export_results"),
     url(r"^search/get_export_file$", search.get_export_file, name="get_export_file"),
     url(r"^search/get_dsl$", search.get_dsl_from_search_string, name="get_dsl"),
@@ -297,6 +299,7 @@ urlpatterns = [
     url(r"^etl-manager$", ETLManagerView.as_view(), name="etl_manager"),
     url(r"^clear-user-permission-cache", ClearUserPermissionCache.as_view(), name="clear_user_permission_cache"),
     url(r"^transform-edtf-for-tile", api.TransformEdtfForTile.as_view(), name="transform_edtf_for_tile"),
+    url(r"^reorder_maps", ReorderMaps.as_view(), name ="reorder_maps"),
 ]
 
 if settings.DEBUG:
